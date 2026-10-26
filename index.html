@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A real-time weather dashboard with live weather conditions, humidity, and wind speed.">
+  <title>SkyCast | Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app-container">
+    <header class="topbar">
+      <a href="#" class="brand" aria-label="SkyCast home">
+        <span class="brand-icon">☀</span>
+        SkyCast
+      </a>
+      <span class="live-badge">
+        <span class="live-dot"></span>
+        LIVE WEATHER
+      </span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">YOUR PERSONAL WEATHER STATION</p>
+      <h1>Weather, <span>at a glance.</span></h1>
+      <p class="subtitle">
+        Real-time weather conditions for any city around the world.
+      </p>
+
+      <form id="searchForm" class="search-form">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label for="cityInput" class="visually-hidden">Enter city name</label>
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="Search a city, e.g. Nashik"
+          autocomplete="off"
+          maxlength="100"
+          required
+        >
+        <button type="submit" id="searchBtn">Search <span>→</span></button>
+      </form>
+
+      <div class="quick-cities" aria-label="Popular cities">
+        <span>Try:</span>
+        <button type="button" class="city-chip" data-city="Nashik">Nashik</button>
+        <button type="button" class="city-chip" data-city="Mumbai">Mumbai</button>
+        <button type="button" class="city-chip" data-city="London">London</button>
+        <button type="button" class="city-chip" data-city="Tokyo">Tokyo</button>
+      </div>
+    </section>
+
+    <div id="statusMessage" class="status-message" role="status" aria-live="polite" hidden></div>
+
+    <section id="weatherDashboard" class="dashboard" hidden aria-label="Weather results">
+      <div class="location-row">
+        <div>
+          <p class="section-label">CURRENT CONDITIONS</p>
+          <h2 id="cityName">City</h2>
+          <p id="locationDetails" class="location-details"></p>
+        </div>
+        <div class="updated-info">
+          <span class="live-dot"></span>
+          <span id="updatedAt">Live data</span>
+        </div>
+      </div>
+
+      <article class="weather-hero">
+        <div class="weather-main">
+          <div id="weatherIcon" class="weather-icon" aria-hidden="true">☀️</div>
+          <div>
+            <div class="temperature">
+              <span id="temperature">--</span><span class="degree">°C</span>
+            </div>
+            <p id="weatherDescription" class="weather-description">Loading...</p>
+            <p id="feelsLike" class="feels-like">Feels like --°C</p>
+          </div>
+        </div>
+        <div class="day-indicator">
+          <span id="dayIcon">☀️</span>
+          <span id="dayStatus">Daytime</span>
+        </div>
+      </article>
+
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span class="metric-icon humidity-icon">💧</span>
+            <span>Humidity</span>
+          </div>
+          <p class="metric-value"><span id="humidity">--</span><small>%</small></p>
+          <p class="metric-note">Relative humidity</p>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span class="metric-icon wind-icon">🌬️</span>
+            <span>Wind Speed</span>
+          </div>
+          <p class="metric-value"><span id="windSpeed">--</span><small> km/h</small></p>
+          <p class="metric-note">Current wind conditions</p>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span class="metric-icon feels-icon">🌡️</span>
+            <span>Feels Like</span>
+          </div>
+          <p class="metric-value"><span id="feelsMetric">--</span><small>°C</small></p>
+          <p class="metric-note">Perceived temperature</p>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-heading">
+            <span class="metric-icon rain-icon">🌧️</span>
+            <span>Precipitation</span>
+          </div>
+          <p class="metric-value"><span id="precipitation">--</span><small> mm</small></p>
+          <p class="metric-note">Current precipitation</p>
+        </article>
+      </div>
+
+      <footer class="dashboard-footer">
+        <span>Weather data powered by Open-Meteo</span>
+        <span id="coordinates"></span>
+      </footer>
+    </section>
+
+    <footer class="page-footer">
+      Built with HTML, CSS, JavaScript &amp; REST APIs
+    </footer>
+  </main>
+</body>
+</html>
